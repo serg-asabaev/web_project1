@@ -6,11 +6,11 @@
     <title>Заголовок страницы</title>
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
 </head>
-<body>
+<body >
 <header></header>
-<div class="row">
+<div class="row"style="height:100vh">
 
-    <div class="col-2 text-bg-dark bg-dark" style="height:94vh">
+    <div class="col-2 text-bg-dark bg-dark mb-0">
         <div class="row mt-2 navbar-brand mx-2 ">
             <div class="col-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bootstrap-fill" viewBox="0 0 16 16">
@@ -22,20 +22,19 @@
                 <h4 class="">Меню</h4>
             </div>
         </div>
-        <div class="row d-flex align-items-start mt-4">
-          <div class="col-12 text-bg-dark text-white nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <button class="col-12 nav-link active" style="color:white" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-selected="true">Главная</button>
-            <button class="col-12 nav-link" style="color:white" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-selected="false">Категории</button>
-            <button class="col-12 nav-link" style="color:white" data-bs-toggle="pill" data-bs-target="#v-pills-disabled" type="button" role="tab" aria-selected="false">Заказы</button>
-            <button class="col-12 nav-link" style="color:white" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-selected="false">Контакты</button>
+        <div class="row d-flex align-items-start mt-4 text-center">
+          <div class="col-12 text-bg-dark text-white nav flex-column nav-pills me-3" role="tablist" aria-orientation="vertical">
+            <a class="col-12 nav-link active" style="color:white" type="button" role="tab" aria-selected="true">Главная</a>
+            <a class="col-12 nav-link" style="color:white" type="button" role="tab" aria-selected="false" href="C:\Users\Сергей\Desktop\my-proj\pythonProject3\static\catalog.html">Категории</a>
+            <a class="col-12 nav-link" style="color:white" type="button" role="tab" aria-selected="false">Заказы</a>
+            <a class="col-12 nav-link" style="color:white" type="button" role="tab" aria-selected="false" href="C:\Users\Сергей\Desktop\my-proj\pythonProject3\static\contacts.html">Контакты</a>
           </div>
         </div>
-
     </div>
     <div class="col-10 bg-body text-center">
-        <h1>Главная</h1>
+        <h1 class="mt-4">Главная</h1>
         <p>Вы находитесь на сайте, предназначенном для продажи товаров</p>
-        <div class="row" style="grid-template-columns: 1fr 1fr 1fr;">
+        <div class="row text-center" style="grid-template-columns: 1fr 1fr 1fr;">
             <div class="card col-3 mt-5 mx-3 px-0 pb-3">
                 <div class="card-header">
                     <h5 class="card-title">Товар 1</h5>
@@ -69,9 +68,11 @@
         </div>
     </div>
 </div>
-<footer>
+<footer class="mb-0">
     <div class="row">
         <div class="dropdown col-2 text-bg-dark bg-dark">
+
+            <img src="images/AtomicHeart_sample.jpg" class="img-thumbnail" style="width:75px; height:75px; border-radius:45px">
             <a class="btn btn-dark dropdown-toggle mb-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Пользователь
             </a>
