@@ -1,11 +1,10 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
+from src.http_server import MyServer
+
 hostName = "localhost" # Адрес для доступа по сети
 serverPort = 8080 # Порт для доступа по сети
-
-
-from src.http_server import MyServer
 
 if __name__ == "__main__":
     # Инициализация веб-сервера, который будет по заданным параметрах в сети
