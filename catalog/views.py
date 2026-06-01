@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("👋 Главная страница каталога работает!")
+    return render(request, 'index.html')
 
 def contacts(request):
     return render(request, 'contacts.html')
