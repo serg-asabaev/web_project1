@@ -1,0 +1,65 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+        "name": "test",
+        "description": "test"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 7,
+    "fields": {
+        "name": "Смартфон",
+        "description": "Смартфоны"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 8,
+    "fields": {
+        "name": "Телевизор",
+        "description": "Умный телевозор"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Iphone 17",
+        "description": "Смартфон APPLE iPhone 17 256GB Lavender - eSIM A3258 /A3519 - MG7L4/MG6A4",
+        "image": "",
+        "category": 7,
+        "price": 100000.0,
+        "created_at": "2026-06-07T20:00:00Z",
+        "updated_at": "2026-06-07T20:00:00Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "Телевизор TCL 75\" V6C 4K HDR MEMC Google TV",
+        "description": "Смартфон APPLE iPhone 17 256GB Lavender - eSIM A3258 /A3519 - MG7L4/MG6A4Телевизор TCL 75\" V6C 4K HDR MEMC Google TV, Смарт ТВ, 75 дюймов",
+        "image": "",
+        "category": 8,
+        "price": 74249.0,
+        "created_at": "2026-06-07T20:00:00Z",
+        "updated_at": "2026-06-07T20:00:00Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "Телевизор TCL 75\" V6C 4K HDR MEMC Google TV",
+        "description": "Смартфон APPLE iPhone 17 256GB Lavender - eSIM A3258 /A3519 - MG7L4/MG6A4Телевизор TCL 75\" V6C 4K HDR MEMC Google TV, Смарт ТВ, 75 дюймов",
+        "image": "",
+        "category": 8,
+        "price": 74249.0,
+        "created_at": "2026-06-07T20:00:00Z",
+        "updated_at": "2026-06-07T20:00:00Z"
+    }
+}
+]
