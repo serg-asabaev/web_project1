@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Подробная информация о товаре{% endblock %}
+
+{% block content %}
+
+<h1> Информация о товаре </h1>
+<!--{{ product }}-->
+
+  <div class="row text-center" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div class="card col-3 mt-5 mx-3 px-0 pb-3">
+          <img src="{{ product.image }}" class="card-img-top" alt="...">
+          <div class="card-header">
+              <h5 class="card-title">{{ product.name }}</h5>
+          </div>
+          <div class="card-body">
+              <h3>{{ product.price }} руб.</h3>
+              <p>{{ product.description }}</p>
+          </div>
+          <button type="button" class="btn btn-outline-primary mx-5">Купить</button>
+      </div>
+  </div>
+
+{% endblock %}
