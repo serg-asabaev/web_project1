@@ -8,10 +8,9 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
 </head>
 <body>
-    <nav>
-        {% block menu %}
-        {% endblock %}
-    </nav>
+<header>
+   {% include 'includes/menu.html'%}
+</header>
     <div class="container mb-5" style="height:100vh">
         {% block content %} {% endblock %}
     </div>
