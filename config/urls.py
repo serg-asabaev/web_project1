@@ -8,7 +8,7 @@ from config.settings import MEDIA_ROOT
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("catalog.urls", namespace='catalog'))
+    path("", include("catalog.urls", namespace='catalog')),
 ]
 
 if settings.DEBUG == True:
