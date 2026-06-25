@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Создание записи блога{% endblock %}
+
+{% block content %}
+
+<h1> Создание записи блога </h1>
+<!--{{ product }}-->
+
+<div class="row text-center" style="grid-template-columns: 1fr 1fr 1fr;">
+    <form class="row" method="post" enctype="multipart/form-data">
+        <div class="card col-5">
+            <div class="card-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <button class="btn btn-primary">
+                {% if blog_record %}
+                Сохранить
+                {% else %}
+                Создать
+                {% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

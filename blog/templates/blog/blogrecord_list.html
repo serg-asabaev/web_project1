@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Блог{% endblock %}
+
+{% block content %}
+
+<h1> Записи блога </h1>
+
+<div class="row text-center mb-5" style="grid-template-columns: 1fr 1fr 1fr;">
+    {% for blog_record in blog %}
+    <div class="card col-4 mt-5 mx-3 px-0 pb-3">
+    {% if blog_record.preview %}
+        <img src="{{ blog_record.preview.url }}" alt="..." style="max-width: 500px;">
+    {% endif %}
+      <div class="card-header">
+          <h5 class="card-title">{{ blog_record.title }}</h5>
+      </div>
+      <div class="card-body">
+          <p>{{ blog_record.content|truncatechars:100 }}</p>
+      </div>
+       <div class="btn-group pb-1 mt-5 px-2">
+            <a class="btn btn-outline-primary" style="border-radius:5px" href="{% url 'blog:blog_detail' blog_record.pk %}" role="button">
+                Посмотреть
+            </a>
+
+            <a class="btn btn-outline-secondary" style="border-radius:5px" href="{% url 'blog:blog_update' blog_record.pk %}" role="button">
+                Редактировать
+            </a>
+
+            <a class="btn btn-outline-danger" style="border-radius:5px" href="{% url 'blog:blog_delete' blog_record.pk %}" role="button">
+                Удалить
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
