@@ -26,6 +26,7 @@ INSTALLED_APPS = [
 
     "web_app1",
     'catalog.apps.CatalogConfig',
+    "blog.apps.BlogConfig",
 ]
 
 MIDDLEWARE = [

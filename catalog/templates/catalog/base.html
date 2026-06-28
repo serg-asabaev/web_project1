@@ -9,9 +9,15 @@
 </head>
 <body>
 <header>
-   {% include 'includes/menu.html'%}
+   {% include 'catalog/includes/menu.html'%}
 </header>
+
     <div class="container mb-5" style="height:100vh">
+        <p>
+            <a class="btn btn-outline-primary" style="border-radius:5px" href="{% url 'catalog:product_create' %}" role="button">
+                Создать товар
+            </a>
+        </p>
         {% block content %} {% endblock %}
     </div>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
