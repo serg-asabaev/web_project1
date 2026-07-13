@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "web_app1",
     'catalog.apps.CatalogConfig',
     "blog.apps.BlogConfig",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -114,3 +115,5 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+AUTH_USER_MODEL = "users.User"
