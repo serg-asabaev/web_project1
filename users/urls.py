@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 
 from users.apps import UsersConfig
-from users.views import RegisterView
+from users.views import RegisterView, CustomLogoutView
 
 
 app_name = UsersConfig.name
@@ -13,3 +13,5 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page=reverse_lazy('catalog:product_list')), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
 ]
+
+#

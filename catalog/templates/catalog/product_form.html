@@ -20,6 +20,9 @@
                 {% csrf_token %}
                 {{ form.as_p }}
             </div>
+            {% if product.is_published %}
+            <h5> Опубликовано </h5>
+            {% endif %}
             <button class="btn btn-primary">
                 {% if product %}
                 Сохранить
@@ -29,6 +32,12 @@
             </button>
         </div>
     </form>
+    {% if product.is_published and perms.catalog.can_unpublish_product %}
+    <form action="{% url 'catalog:product_unpublish' product.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit"> Отменить публикацию</button>
+    </form>
+    {% endif %}
 </div>
 
 {% endblock %}

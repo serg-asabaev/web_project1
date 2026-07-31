@@ -10,7 +10,7 @@ wrong_words = ["казино", "криптовалюта", "крипта", "би
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ('name', 'description', 'image', 'category', 'price')
+        fields = ('name', 'description', 'image', 'category', 'price', 'is_published')
 
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
@@ -22,10 +22,11 @@ class ProductForm(ModelForm):
 
 
     def clean_price(self):
-        price = self.cleaned_data.get('price')
+        price = float(self.cleaned_data.get('price'))
 
         if price < 0:
             raise ValidationError("Цена не может быть отрицательной")
+        return price
 
     def clean(self):
         cleaned_data = super().clean()
@@ -39,3 +40,8 @@ class ProductForm(ModelForm):
 
             if wrong_word in description.lower():
                 self.add_error('description', f"Описание товара не может содержать слово {wrong_word}")
+
+class ProductModeratorForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ('is_published',)

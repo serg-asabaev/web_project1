@@ -1,11 +1,12 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse, HttpResponseForbidden
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 
 from catalog.models import Product
-from catalog.forms import ProductForm
+from catalog.forms import ProductForm, ProductModeratorForm
 
 
 class IndexView(TemplateView):
@@ -16,9 +17,16 @@ class ContactsView(TemplateView):
     model = Product
     template_name = "catalog/contacts.html"
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     model = Product
+    template_name = 'catalog/product_list.html'
     context_object_name = 'products'
+    login_url = reverse_lazy('users:login')
+
+    def get_queryset(self):
+        if not self.request.user.has_perm('catalog.view_product'):
+            return Product.objects.none()
+        return Product.objects.all()
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
@@ -33,6 +41,13 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('catalog:product_list')
     login_url = reverse_lazy('users:login')
 
+    def form_valid(self, form):
+        product = form.save()
+        user = self.request.user
+        product.owner = user
+        product.save()
+        return super().form_valid(form)
+
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     context_object_name = 'product'
@@ -40,8 +55,32 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('catalog:product_list')
     login_url = reverse_lazy('users:login')
 
+    def get_form_class(self):
+        user = self.request.user
+
+        if user == self.object.owner:
+            return ProductForm
+
+        if user.has_perm('catalog.can_unpublish_product'):
+            return ProductModeratorForm
+
+        raise PermissionDenied
+
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     context_object_name = 'product'
     success_url = reverse_lazy('catalog:product_list')
     login_url = reverse_lazy('users:login')
+
+class ProductPublishView(LoginRequiredMixin, View):
+
+    def post(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+
+        if not request.user.has_perm('catalog.can_unpublish_product'):
+            return HttpResponseForbidden("У вас нет права отменять публикацию товара!")
+
+        product.is_published = False
+        product.save()
+
+        return redirect('catalog:product_update', pk=product.id)
