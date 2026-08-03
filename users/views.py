@@ -25,4 +25,4 @@ class RegisterView(CreateView):
 
 
 class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy('')
+    next_page = reverse_lazy('catalog:product_list')
