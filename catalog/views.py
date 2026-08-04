@@ -4,9 +4,11 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
+from django.core.cache import cache
 
 from catalog.models import Product
 from catalog.forms import ProductForm, ProductModeratorForm
+from .services import get_product_from_cache
 
 
 class IndexView(TemplateView):
@@ -26,7 +28,7 @@ class ProductListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         if not self.request.user.has_perm('catalog.view_product'):
             return Product.objects.none()
-        return Product.objects.all()
+        return get_product_from_cache()
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product

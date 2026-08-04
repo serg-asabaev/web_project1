@@ -132,3 +132,15 @@ EMAIL_HOST_USER = 'usr123qwe@yandex.ru'
 EMAIL_HOST_PASSWORD = 'cahudyvytebyrrgf'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 #2it-G5b-5k2-UsV
+
+
+
+CACHE_ENABLED = True
+
+if CACHE_ENABLED:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+            'LOCATION': 'redis://localhost:6379',
+        }
+    }
