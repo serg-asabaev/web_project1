@@ -5,10 +5,11 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.core.cache import cache
+from unicodedata import category
 
-from catalog.models import Product
+from catalog.models import Product, Category
 from catalog.forms import ProductForm, ProductModeratorForm
-from .services import get_product_from_cache
+from .services import get_product_from_cache, ProductService
 
 
 class IndexView(TemplateView):
@@ -86,3 +87,15 @@ class ProductPublishView(LoginRequiredMixin, View):
         product.save()
 
         return redirect('catalog:product_update', pk=product.id)
+
+class CategoryDetailView(DetailView):
+    model = Category
+    template_name = "catalog/category_detail.html"
+    context_object_name = "category"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category = Category.objects.get(id=self.kwargs['pk'])
+        context['products'] = ProductService.get_product_in_category(category)
+        context['category_name'] = category.name
+        return context

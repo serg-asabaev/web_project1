@@ -42,6 +42,11 @@
                 </a>
            </div>
            {% endif %}
+           <div class="col-4">
+                <a class="btn btn-outline-danger" style="border-radius:5px" href="{% url 'catalog:category_detail' product.category.id %}" role="button">
+                    Все товары в категории
+                </a>
+           </div>
         </div>
     </div>
     {% endfor %}
