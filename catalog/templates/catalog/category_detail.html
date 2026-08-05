@@ -1,0 +1,51 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %} Список товаров {% endblock %}
+
+{% block content %}
+
+<h1>Товары в категории {{ category_name }}</h1>
+
+
+<div class="row text-center mb-5" style="grid-template-columns: 1fr 1fr 1fr;">
+    {% for product in products %}
+    <div class="card col-4 mt-5 mx-3 px-0 pb-3">
+    {% if product.image %}
+        <img src="{{ product.image.url }}" alt="..." style="max-width: 500px;">
+    {% endif %}
+      <div class="card-header">
+          <h5 class="card-title">{{ product.name }}</h5>
+      </div>
+      <div class="card-body">
+          <h3>{{ product.price }} руб.</h3>
+          <p>{{ product.description|truncatechars:100 }}</p>
+          {% if product.is_published %}
+          <h5> Опубликовано </h5>
+          {% endif %}
+      </div>
+      <button type="button" class="btn btn-outline-primary mx-5">Купить</button>
+       <div class="row pb-1 mt-5 px-2">
+            <div class="col-4">
+                <a class="btn btn-outline-primary" style="border-radius:5px" href="{% url 'catalog:product_detail' product.pk %}" role="button">
+                    Посмотреть
+                </a>
+            </div>
+            <div class="col-4">
+                <a class="btn btn-outline-secondary" style="border-radius:5px" href="{% url 'catalog:product_update' product.pk %}" role="button">
+                    Редактировать
+                </a>
+            </div>
+           {% if product.owner == user.owner %}
+           <div class="col-4">
+                <a class="btn btn-outline-danger" style="border-radius:5px" href="{% url 'catalog:product_delete' product.pk %}" role="button">
+                    Удалить
+                </a>
+           </div>
+           {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
