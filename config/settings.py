@@ -123,12 +123,24 @@ LOGOUT_REDIRECT_URL = 'catalog:product_list'
 LOGIN_URL = 'login'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = 465
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'usr123qwe@yandex.ru'
-EMAIL_HOST_PASSWORD = 'cahudyvytebyrrgf'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
+EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 #2it-G5b-5k2-UsV
+
+
+
+CACHE_ENABLED = True
+
+if CACHE_ENABLED:
+    CACHES = {
+        'default': {
+            'BACKEND': os.getenv("BACKEND"),
+            'LOCATION':  os.getenv("LOCATION"),
+        }
+    }

@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1> Каталог товаров </h1>
+<h1>Товары в категории {{ category_name }}</h1>
 
 
 <div class="row text-center mb-5" style="grid-template-columns: 1fr 1fr 1fr;">
@@ -42,11 +42,6 @@
                 </a>
            </div>
            {% endif %}
-           <div class="col-4">
-                <a class="btn btn-outline-danger" style="border-radius:5px" href="{% url 'catalog:category_detail' product.category.id %}" role="button">
-                    Все товары в категории
-                </a>
-           </div>
         </div>
     </div>
     {% endfor %}
